@@ -8,21 +8,29 @@ include: "//bc360_marketing/*.view.lkml"
 # include: "//bc360_users/*.view.lkml"
 
 
+include: "*.view.lkml"
 
-view: scl_mx_marketing {
-  view_label: "SCL - Marketing Insights"
-  label: "SCL - Marketing"
-  extends: [mx_marketing_base]
+label: "BC360 - SCL Health"
 
-  derived_table: {
-    datagroup_trigger: dg_bc360_bq
+explore: bc360_mx_main {
+  from: arch_clients_admin
+  label: "SCL - Marketing [MAIN]"
 
-    sql:  SELECT
-            mxmmd.*
-          FROM flat_mx.mx_marketing_master_hour mxmmd
-          LEFT JOIN arch_campaigns.arch_campaigns_base ap USING (adgroup_id)
-          LEFT JOIN arch_clients.arch_clients_base ac USING (organization_id)
-          WHERE ac.client_id = 'CLIENT-00002' AND
-                ap.agency = 'Fluency';;
+  join: arch_campaigns_admin {
+    relationship: one_to_many
+    type: left_outer
+    sql_on: ${bc360_mx_main.organization_id} = ${arch_campaigns_admin.organization_id} ;;
+  }
+
+  join: scl_mx_marketing {
+    relationship: one_to_many
+    type: inner
+    sql_on: ${arch_campaigns_admin.adgroup_id} = ${scl_mx_marketing.adgroup_id} ;;
+  }
+
+  join: arch_outcomes_admin {
+    relationship: many_to_one
+    type: left_outer
+    sql_on: ${scl_mx_marketing.outcome_tracker_id} = ${arch_outcomes_admin.outcome_tracker_id} ;;
   }
 }
