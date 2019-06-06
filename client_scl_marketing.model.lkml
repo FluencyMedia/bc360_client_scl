@@ -10,11 +10,11 @@ include: "//bc360_marketing/*.view.lkml"
 
 include: "*.view.lkml"
 
-label: "BC360 - SCL Health"
+label: "SCL Health"
 
 explore: bc360_mx_main {
   from: arch_clients_admin
-  label: "SCL - Marketing [MAIN]"
+  label: "SCL - PPC Only"
 
   join: arch_campaigns_admin {
     relationship: one_to_many
