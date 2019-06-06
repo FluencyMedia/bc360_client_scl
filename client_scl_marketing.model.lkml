@@ -12,25 +12,25 @@ include: "*.view.lkml"
 
 label: "SCL Health"
 
-explore: bc360_mx_main {
+explore: scl_mx_ppc {
   from: arch_clients_admin
   label: "SCL - PPC Only"
 
   join: arch_campaigns_admin {
     relationship: one_to_many
     type: left_outer
-    sql_on: ${bc360_mx_main.organization_id} = ${arch_campaigns_admin.organization_id} ;;
+    sql_on: ${scl_mx_ppc.organization_id} = ${arch_campaigns_admin.organization_id} ;;
   }
 
-  join: scl_mx_marketing {
+  join: scl_mx_marketing_ppc {
     relationship: one_to_many
     type: inner
-    sql_on: ${arch_campaigns_admin.adgroup_id} = ${scl_mx_marketing.adgroup_id} ;;
+    sql_on: ${arch_campaigns_admin.adgroup_id} = ${scl_mx_marketing_ppc.adgroup_id} ;;
   }
 
   join: arch_outcomes_admin {
     relationship: many_to_one
     type: left_outer
-    sql_on: ${scl_mx_marketing.outcome_tracker_id} = ${arch_outcomes_admin.outcome_tracker_id} ;;
+    sql_on: ${scl_mx_marketing_ppc.outcome_tracker_id} = ${arch_outcomes_admin.outcome_tracker_id} ;;
   }
 }
