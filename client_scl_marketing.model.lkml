@@ -14,7 +14,7 @@ label: "SCL Health"
 
 explore: scl_mx_ppc {
   from: arch_clients_admin
-  label: "SCL - PPC Only"
+  label: "SCL - PPC"
 
   join: arch_campaigns_admin {
     relationship: one_to_many

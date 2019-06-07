@@ -13,22 +13,22 @@ label: "SCL Health"
 
 explore: scl_rankings_all {
   from: arch_terms_base
-  label: "SCL - Rankings [All Domains]"
+  label: "SCL - Rankings [All]"
+
   join: scl_mx_rankings_all {
     type: left_outer
     relationship: many_to_many
     sql_on: ${scl_rankings_all.search_term} = ${scl_mx_rankings_all.search_term} ;;
   }
-
 }
 
 explore: scl_rankings_scl {
   from: arch_terms_base
-  label: "SCL - Rankings [SCLHealth.org Only]"
+  label: "SCL - Rankings [SCL]"
+
   join: scl_mx_rankings_scl {
     type: left_outer
     relationship: many_to_many
     sql_on: ${scl_rankings_scl.search_term} = ${scl_mx_rankings_scl.search_term} ;;
   }
-
 }
