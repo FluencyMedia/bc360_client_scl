@@ -19,7 +19,7 @@ explore: scl_rankings_all {
     type: left_outer
     relationship: many_to_many
     sql_on: ${scl_rankings_all.search_term} = ${scl_mx_rankings_all.search_term} AND
-            ${scl_mx_rankings_all.scan_month} = ${scl_mx_rankings_all.scan_month};;
+            ${scl_rankings_all.scan_month} = ${scl_mx_rankings_all.scan_month};;
   }
 
   join: location_meta {
@@ -37,7 +37,7 @@ explore: scl_rankings_scl {
     type: left_outer
     relationship: many_to_many
     sql_on: ${scl_rankings_scl.search_term} = ${scl_mx_rankings_scl.search_term} AND
-            ${scl_mx_rankings_scl.month_month} = ${scl_mx_rankings_scl.scan_month};;
+            ${scl_rankings_scl.scan_month} = ${scl_mx_rankings_scl.scan_month};;
   }
 
   join: location_meta {
