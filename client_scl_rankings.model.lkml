@@ -18,7 +18,14 @@ explore: scl_rankings_all {
   join: scl_mx_rankings_all {
     type: left_outer
     relationship: many_to_many
-    sql_on: ${scl_rankings_all.search_term} = ${scl_mx_rankings_all.search_term} ;;
+    sql_on: ${scl_rankings_all.search_term} = ${scl_mx_rankings_all.search_term} AND
+            ${scl_mx_rankings_all.scan_month} = ${scl_mx_rankings_all.scan_month};;
+  }
+
+  join: location_meta {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${location_meta.location} = ${scl_mx_rankings_all.location} ;;
   }
 }
 
@@ -29,6 +36,13 @@ explore: scl_rankings_scl {
   join: scl_mx_rankings_scl {
     type: left_outer
     relationship: many_to_many
-    sql_on: ${scl_rankings_scl.search_term} = ${scl_mx_rankings_scl.search_term} ;;
+    sql_on: ${scl_rankings_scl.search_term} = ${scl_mx_rankings_scl.search_term} AND
+            ${scl_mx_rankings_scl.month_month} = ${scl_mx_rankings_scl.scan_month};;
+  }
+
+  join: location_meta {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${location_meta.location} = ${scl_mx_rankings_scl.location} ;;
   }
 }
