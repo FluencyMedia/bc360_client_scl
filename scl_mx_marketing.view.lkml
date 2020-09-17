@@ -28,7 +28,7 @@ view: scl_mx_marketing {
 view: scl_mx_marketing_ppc {
   view_label: "SCL - Marketing Insights"
   label: "SCL - PPC Only"
-  extends: [mx_marketing_base]
+  extends: [mx_marketing]
 
   derived_table: {
     datagroup_trigger: dg_bc360_mx_marketing

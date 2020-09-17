@@ -8,7 +8,7 @@ include: "//bc360_marketing/**/*.view.lkml"
 # include: "//bc360_users/**/*.view.lkml"
 
 
-include: "*.view.lkml"
+include: "/**/*.view.lkml"
 
 label: "SCL Health"
 
@@ -32,5 +32,11 @@ explore: scl_mx_ppc {
     relationship: many_to_one
     type: left_outer
     sql_on: ${scl_mx_marketing_ppc.outcome_tracker_id} = ${arch_outcomes_admin.outcome_tracker_id} ;;
+  }
+
+  join: analyst_notes_scl {
+    type: left_outer
+    relationship: many_to_many
+    sql_on: ${arch_campaigns_admin.campaign_group} = ${analyst_notes_scl.target};;
   }
 }

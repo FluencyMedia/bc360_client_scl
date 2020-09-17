@@ -5,7 +5,7 @@ include: "//bc360_services/**/*.view.lkml"
 include: "//bc360_campaigns/**/*.view.lkml"
 include: "//bc360_rankings/**/*.view.lkml"
 
-include: "*.view.lkml"
+include: "/**/*.view.lkml"
 
 persist_with: dg_bc360_rankings
 
@@ -27,6 +27,8 @@ explore: scl_rankings_all {
     relationship: many_to_one
     sql_on: ${location_meta.location} = ${scl_mx_rankings_all.location} ;;
   }
+
+  join: analyst_notes_scl {}
 }
 
 explore: scl_rankings_scl {
