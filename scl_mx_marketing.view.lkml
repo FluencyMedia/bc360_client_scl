@@ -1,9 +1,9 @@
-include: "//bc360_marketing/*.view.lkml"
+include: "//bc360_marketing/**/*.view.lkml"
 
 view: scl_mx_marketing {
   view_label: "SCL - Marketing Insights"
   label: "SCL - Marketing"
-  extends: [mx_marketing_base]
+  extends: [mx_marketing]
 
   derived_table: {
     datagroup_trigger: dg_bc360_mx_marketing

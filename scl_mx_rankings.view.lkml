@@ -1,4 +1,4 @@
-include: "//bc360_rankings/mx_rankings_core.view.lkml"
+include: "//bc360_rankings/**/*.view.lkml"
 
 view: scl_mx_rankings_all {
   extends: [mx_rankings_core]
