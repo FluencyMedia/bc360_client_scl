@@ -10,6 +10,7 @@ view: scl_mx_marketing {
 
     sql:  SELECT
             ROW_NUMBER() OVER () row_id,
+            TIMESTAMP_TRUNC(TIMESTAMP_ADD(TIMESTAMP(date), INTERVAL hour HOUR), HOUR) timestamp,
             mxmmd.*
           FROM flat_mx.mx_marketing_master_hour mxmmd
           LEFT JOIN arch_campaigns.arch_campaigns_base ap USING (adgroup_id)
@@ -35,6 +36,7 @@ view: scl_mx_marketing_ppc {
 
     sql:  SELECT
             ROW_NUMBER() OVER () row_id,
+            TIMESTAMP_TRUNC(TIMESTAMP_ADD(TIMESTAMP(date), INTERVAL hour HOUR), HOUR) timestamp,
             mxmmd.*
           FROM flat_mx.mx_marketing_master_hour mxmmd
           LEFT JOIN arch_campaigns.arch_campaigns_base ap USING (adgroup_id)
