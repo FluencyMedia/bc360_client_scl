@@ -10,6 +10,7 @@ include: "//bc360_timeframes/**/*.view.lkml"
 
 
 include: "/**/*.view.lkml"
+include: "/**/*.dashboard.lookml"
 
 label: "SCL Health"
 
