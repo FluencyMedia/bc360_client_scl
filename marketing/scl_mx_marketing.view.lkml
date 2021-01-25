@@ -58,8 +58,8 @@ view: scl_mx_marketing {
           LEFT JOIN arch_clients.arch_clients_base ac USING (organization_id)
           WHERE ac.client_id = 'CLIENT-00002' AND
                 ap.agency = 'Fluency' AND
-                mxmmd.date <= DATE_SUB(DATE_TRUNC(CURRENT_DATE(), MONTH), INTERVAL 1 DAY)
-                AND NOT(timestamp BETWEEN '2021-01-14 10:00:00.000 UTC' AND '2021-01-15 18:00:00.000 UTC')
+                ## mxmmd.date <= DATE_SUB(DATE_TRUNC(CURRENT_DATE(), MONTH), INTERVAL 1 DAY) AND
+                NOT(timestamp BETWEEN '2021-01-14 10:00:00.000 UTC' AND '2021-01-15 18:00:00.000 UTC')
           ;;
           partition_keys: ["date"]
           cluster_keys: ["adgroup_id", "timestamp"]
@@ -88,7 +88,7 @@ view: scl_mx_marketing_ppc {
           WHERE ac.client_id = 'CLIENT-00002' AND
                 ap.agency = 'Fluency' AND
                 mxmmd.medium = 'PPC' AND
-                mxmmd.date <= DATE_SUB(DATE_TRUNC(CURRENT_DATE(), MONTH), INTERVAL 1 DAY) AND
+                ## mxmmd.date <= DATE_SUB(DATE_TRUNC(CURRENT_DATE(), MONTH), INTERVAL 1 DAY) AND
                 NOT(timestamp BETWEEN '2021-01-14 10:00:00.000 UTC' AND '2021-01-15 18:00:00.000 UTC')
 
                 ;;
