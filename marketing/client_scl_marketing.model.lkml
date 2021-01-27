@@ -50,6 +50,12 @@ explore: scl_mx_ppc {
     sql_on: ${mx_marketing.timestamp} = ${arch_timeframes.timestamp} ;;
   }
 
+  join: arch_timeframe_windows {
+    relationship: one_to_many
+    type: full_outer
+    sql_on: ${arch_timeframe_windows.timestamp} = ${arch_timeframes.timestamp} ;;
+  }
+
   join: mx_share_impr_click {
     relationship: one_to_many
     type: left_outer
