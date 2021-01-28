@@ -38,7 +38,7 @@ view: scl_arch_campaigns {
           LEFT JOIN arch_clients.arch_clients_base ac USING (organization_id)
           WHERE ac.client_id = 'CLIENT-00002' AND
                 ap.agency = 'Fluency'
-    ;;
+          ;;
   }
 }
 
@@ -59,7 +59,11 @@ view: scl_mx_marketing {
           WHERE ac.client_id = 'CLIENT-00002' AND
                 ap.agency = 'Fluency' AND
                 ## mxmmd.date <= DATE_SUB(DATE_TRUNC(CURRENT_DATE(), MONTH), INTERVAL 1 DAY) AND
-                NOT(timestamp BETWEEN '2021-01-14 10:00:00.000 UTC' AND '2021-01-15 18:00:00.000 UTC')
+                ## FILTER ADDED ON 01/25/21: Remove _all_ SCL data within a fixed time period (due to mistaken overspend)
+                NOT(timestamp BETWEEN TIMESTAMP('2021-01-14 10:00:00.000 America/Denver') AND TIMESTAMP('2021-01-15 18:00:00.000 America/Denver')) AND
+                ## FILTER ADDED ON 01/28/21: Remove all data for two campaign groups, on a single day, due to error
+                NOT ((ap.campaign_label LIKE "MT HRH MAM" OR ap.campaign_label LIKE "MT SJH MAM") AND
+                     (timestamp BETWEEN TIMESTAMP('2018-11-06 00:00:00.000 America/Denver') AND TIMESTAMP('2018-11-07 18:00:00.000 America/Denver')))
           ;;
           partition_keys: ["date"]
           cluster_keys: ["adgroup_id", "timestamp"]
