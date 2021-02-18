@@ -90,7 +90,7 @@ view: scl_mx_marketing_ppc {
           LEFT JOIN arch_clients.arch_clients_base ac USING (organization_id)
           WHERE ac.client_id = 'CLIENT-00002' AND
                 ap.agency = 'Fluency' AND
-                (mxmmd.medium = 'Video' OR mxmmd.medium = 'PPC') AND
+                mxmmd.medium = 'PPC' AND
                 ## mxmmd.date <= DATE_SUB(DATE_TRUNC(CURRENT_DATE(), MONTH), INTERVAL 1 DAY) AND
                 ## FILTER ADDED ON 01/25/21: Remove _all_ SCL data within a fixed time period (due to mistaken overspend)
                 NOT(timestamp BETWEEN TIMESTAMP('2021-01-13 12:00:00.000 America/Denver') AND TIMESTAMP('2021-01-15 18:00:00.000 America/Denver'))
