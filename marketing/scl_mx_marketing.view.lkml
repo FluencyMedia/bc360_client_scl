@@ -93,7 +93,7 @@ view: scl_mx_marketing_ppc {
                 mxmmd.medium = 'PPC' AND
                 ## mxmmd.date <= DATE_SUB(DATE_TRUNC(CURRENT_DATE(), MONTH), INTERVAL 1 DAY) AND
                 ## FILTER ADDED ON 01/25/21: Remove _all_ SCL data within a fixed time period (due to mistaken overspend)
-                NOT(timestamp BETWEEN TIMESTAMP('2021-01-14 10:00:00.000 America/Denver') AND TIMESTAMP('2021-01-15 18:00:00.000 America/Denver'))
+                NOT(timestamp BETWEEN TIMESTAMP('2021-01-13 12:00:00.000 America/Denver') AND TIMESTAMP('2021-01-15 18:00:00.000 America/Denver'))
                 ;;
           partition_keys: ["date"]
           cluster_keys: ["adgroup_id", "timestamp"]
